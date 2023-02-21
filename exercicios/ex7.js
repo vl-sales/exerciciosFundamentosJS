@@ -4,24 +4,28 @@
 class CalcularFibonacci {
 
     *calcula(i) {
-        let fibo = [0, 1]
-        let primeiroRetorno = yield 1
-        while(fibo.length < i) {
+        let n1;
+        let n2;
+        let fibo = [0]
+        while(fibo.length < i + 1) {
             let ultimoIndex = fibo.length - 1
-            let retorno = yield fibo[ultimoIndex]
-
-            let proximoValor = fibo[ultimoIndex] + fibo[ultimoIndex - 1]
+            
+            n1 = fibo[ultimoIndex]
+            n2 = fibo[ultimoIndex - 1] === undefined ? 1 : fibo[ultimoIndex - 1]
+            
+            let proximoValor = n1 + n2
+            yield n1
             fibo.push(proximoValor)
         }
     }
 }
 
 const fibo = new CalcularFibonacci()
-func = fibo.calcula(2)
+func = fibo.calcula(3)
 console.log(func.next().value)
 console.log(func.next().value)
-// console.log(func.next().value)
-// console.log(func.next().value)
+console.log(func.next().value)
+console.log(func.next().value)
 // console.log(func.next().value)
 // console.log(func.next().value)
 // console.log(func.next().value)

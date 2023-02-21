@@ -28,35 +28,25 @@ class Carro {
 
 class Carros {
     constructor() {
-        this.listaDeCarros = {}
-        this._ultimoId = 0
+        this.listaDeCarros = []
     }
 
     adiciona(carro) {
-        this._ultimoId++
-        this.listaDeCarros[this._ultimoId] = carro;
+        this.listaDeCarros.push(carro)
     }
 
-    atualiza(id, novoCarro) {
-        this.listaDeCarros[id] = novoCarro
+    atualiza(carroAntigo, novoCarro) {
+        const index = this.listaDeCarros.indexOf(carroAntigo)        
+        this.listaDeCarros.splice(index, 1, novoCarro)
     }
 
-    deleta(id) {
-        delete this.listaDeCarros[id]
-        if (Object.keys(this.listaDeCarros).length > 0) {
-
-            const chavesEValores = Object.entries(this.listaDeCarros)
-            const valoresASeremAlterados = chavesEValores.slice(id-1)
-            
-            valoresASeremAlterados.forEach((arr) => {
-                this.listaDeCarros[arr[0] - 1] = arr[1]
-                delete this.listaDeCarros[arr[0]]
-            })
-        }
+    deleta(carro) {
+      const index = this.listaDeCarros.indexOf(carro)
+      this.listaDeCarros.splice(index, 1)
     }
 
     lista() {
-        return {...this.listaDeCarros}
+        return [...this.listaDeCarros]
     }
 }
 
@@ -68,11 +58,11 @@ const carro3 = new Carro('Fiat', 'dadasdasdas', 30000)
 lista.adiciona(carro)
 lista.adiciona(carro2)
 lista.adiciona(carro3)
-console.log(lista.lista())
+// console.log(lista.lista())
 
 const carro4 = new Carro('Fiat', 'ertfsd', 20000)
-lista.atualiza(2, carro4)
+lista.atualiza(carro3, carro4)
 console.log(lista.lista())
 
-lista.deleta(2)
+lista.deleta(carro4)
 console.log(lista.lista())
