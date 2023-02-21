@@ -25,6 +25,20 @@ class Carro {
   }
 }
 
+class calculaTributo {
+  static calcular() {
+    if (this.valor < 20000) {
+      return this.valor * .06
+    } 
+    else if (this.valor < 40000){
+      return this.valor * .05
+    } 
+    else {
+      return this.valor * .04
+    }
+  }
+}
+
 carro = new Carro('Fiat', 'Uno', 50000)
-console.log(carro.calculaTributo())
+console.log(calculaTributo.calcular.call(carro))
 console.log(carro.toString())
